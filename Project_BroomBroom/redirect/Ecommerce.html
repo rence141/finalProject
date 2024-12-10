@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+    <link rel="stylesheet" href="/CSS/ecommerce.css">
+    <script>
+        // Function to dynamically load products
+        function loadProducts() {
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const productContainer = document.querySelector('.product-list');
+            productContainer.innerHTML = ""; // Clear existing products
+
+            products.forEach(product => {
+                const productBox = document.createElement('div');
+                productBox.classList.add('product-box');
+                productBox.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price}</p>
+                    <button class="cart-btn-add" onclick="addToCart('${product.id}')">Add to Cart</button>
+                `;
+                productContainer.appendChild(productBox);
+            });
+        }
+
+        // Mock "Add to Cart" function
+        function addToCart(productId) {
+            alert(`Product ${productId} added to cart!`);
+        }
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <a href="#home" class="logo">BroomBroom</a>
+            <!-- Navbar Links -->
+            <div class="navbar-links">
+                <a href="/Project_BroomBroom/redirect/landing_page.html">Home</a>
+                <a href="/Project_BroomBroom/HTML/website.html">Official Website</a>
+                <a href="/Project_BroomBroom/redirect/AboutUs.html">About Us</a>
+                <a href="/Project_BroomBroom/redirect/Cart.html">Cart</a>
+            </div>
+            <!-- Auth Links -->
+            <div class="auth-links">
+                <a href="/Project_BroomBroom/redirect/Login.html" class="login-link">Login</a>
+                <a href="/Project_BroomBroom/redirect/signup.html" class="signup-link">Sign Up</a>
+            </div>
+        </div>
+        <!-- Centered Search Bar -->
+        <div class="search-container">
+            <input type="text" placeholder="Search..." class="search-input">
+            <button class="search-button">Search</button>
+        </div>
+    </header>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <a href="#" class="close-btn" onclick="toggleSidebar()">X</a>
+        <a href="/Project_BroomBroom/redirect/landing_page.html">Landing Page</a>
+        <a href="/Project_BroomBroom/HTML/website.html">Official Website</a>
+        <a href="/Project_BroomBroom/redirect/AboutUs.html">About Us</a>
+        <a href="#">Cart</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>Welcome to BroomBroom-Ecommerce-Store!!</h1>
+        <p>Go for Greatness!!</p>
+    </div>
+
+    <!-- Product List Section -->
+    <div class="product-list"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/JS/Ecommerce.js"></script>
+</body>
+</html>

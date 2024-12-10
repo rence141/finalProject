@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/CSS/ecommerce.css">
+    <style>
+        /* Enhanced Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table thead {
+            background-color: #007bff;
+            color: white;
+        }
+
+        table img {
+            width: 50px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .total-section {
+            text-align: right;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .checkout-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .checkout-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .remove-btn {
+            padding: 5px 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background-color: #e60000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <a href="/Project_BroomBroom/HTML/website.html" class="logo">BroomBroom</a>
+            <div class="navbar-links">
+                <a href="/Project_BroomBroom/HTML/website.html">Home</a>
+                <a href="/Project_BroomBroom/redirect/Ecommerce.html" class="active">Cart</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Content -->
+    <div class="content">
+        <h1>Your Shopping Cart</h1>
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Items dynamically added -->
+            </tbody>
+        </table>
+        <div class="total-section">
+            <h2 id="totalPrice">Total: $0.00</h2>
+        </div>
+        <a href="#" class="checkout-btn">Proceed to Checkout</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/JS/cart.js"></script>
+</body>
+</html>

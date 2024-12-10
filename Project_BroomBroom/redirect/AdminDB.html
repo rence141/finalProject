@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 20px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .stock-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stock-item label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .stock-item input[type="number"] {
+            width: 60px;
+            padding: 5px;
+        }
+
+        .stock-item button {
+            padding: 5px 10px;
+            margin-left: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .stock-item button:hover {
+            background-color: #0056b3;
+        }
+
+        .stock-level {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        const stockData = {
+            "Item A": 50,
+            "Item B": 30,
+            "Item C": 20
+        };
+
+        // Update stock display
+        function updateStockDisplay() {
+            const stockLevelContainer = document.getElementById("stock-level");
+            stockLevelContainer.innerHTML = ""; // Clear existing content
+
+            for (const item in stockData) {
+                const stockItem = document.createElement("div");
+                stockItem.className = "stock-item";
+
+                const label = document.createElement("label");
+                label.textContent = `${item}: ${stockData[item]} units`;
+
+                const input = document.createElement("input");
+                input.type = "number";
+                input.min = "1";
+                input.value = "1";
+
+                const addButton = document.createElement("button");
+                addButton.textContent = "Add";
+                addButton.onclick = () => {
+                    const quantity = parseInt(input.value);
+                    if (!isNaN(quantity)) {
+                        stockData[item] += quantity;
+                        updateStockDisplay();
+                    }
+                };
+
+                const reduceButton = document.createElement("button");
+                reduceButton.textContent = "Reduce";
+                reduceButton.onclick = () => {
+                    const quantity = parseInt(input.value);
+                    if (!isNaN(quantity) && stockData[item] - quantity >= 0) {
+                        stockData[item] -= quantity;
+                        updateStockDisplay();
+                    } else {
+                        alert("Cannot reduce below 0!");
+                    }
+                };
+
+                stockItem.appendChild(label);
+                stockItem.appendChild(input);
+                stockItem.appendChild(addButton);
+                stockItem.appendChild(reduceButton);
+
+                stockLevelContainer.appendChild(stockItem);
+            }
+        }
+
+        // Initialize stock display on page load
+        window.onload = updateStockDisplay;
+    </script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Stock Dashboard</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="stock-container">
+            <h2>Manage Stock</h2>
+            <div id="stock-level" class="stock-level">
+                <!-- Stock items will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
